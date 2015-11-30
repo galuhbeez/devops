@@ -1,2 +1,2 @@
 # devops 
-tools for daily tasks-fuck fuck 
+tools for daily tasks 
