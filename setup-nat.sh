@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#script set up NAT instance to provision cluster with ansible 
+#script to set up NAT instance to provision cluster with ansible 
 
 remote_admin_host=$1
 git_repo=$2
