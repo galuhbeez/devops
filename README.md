@@ -1,2 +1,2 @@
 # devops 
-tools for daily tasks -email
+tools for daily tasks 
