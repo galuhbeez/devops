@@ -29,3 +29,7 @@ sed -i '406 s/^#//' /etc/freeradius/sites-enabled/default
 sed -i '454 s/^#//' /etc/freeradius/sites-enabled/default
 sed -i '475 s/^#//' /etc/freeradius/sites-enabled/default
 
+sed -i '700 s/^#//' /etc/freeradius/radiusd.conf
+
+service freeradius stop
+
