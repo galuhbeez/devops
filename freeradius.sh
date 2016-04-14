@@ -19,3 +19,5 @@ sudo mysql -u root -ppassword -e "grant all on radius.* to radius@localhost iden
 
 mysql -u root -ppassword -e "use radius;INSERT INTO radcheck (UserName, Attribute, Value) VALUES ('sqltest', 'Password', 'testpwd');"
 
+sed -e 's/radpass/password/g' -e 's/#readclients/readclients/g' /etc/freeradius/sql.conf > sql1.conf
+
