@@ -32,4 +32,31 @@ sed -i '475 s/^#//' /etc/freeradius/sites-enabled/default
 sed -i '700 s/^#//' /etc/freeradius/radiusd.conf
 
 service freeradius stop
+service freeradius start
 
+wget https://sourceforge.net/projects/daloradius/files/daloradius/daloradius0.9-9/daloradius-0.9-9.tar.gz/download
+
+mv download daloradius-0.9-9.tar.gz
+
+tar xvfz daloradius-0.9-9.tar.gz
+mv daloradius-0.9-9 daloradius
+mv daloradius /var/www
+
+chown www-data:www-data /var/www/daloradius -R
+chmod 644 /var/www/daloradius/library/daloradius.conf.php
+
+cd /var/www/daloradius/contrib/db
+mysql -u root -ppassword radius < mysql-daloradius.sql
+cp /var/www/daloradius/library/daloradius.conf.php /var/www/daloradius/library/daloradius.conf.php.bak
+cp /vagrant/daloradius.conf.php.new /var/www/daloradius/library/daloradius.conf.php
+
+
+echo "Alias /daloradius /var/www/daloradius/
+
+<Directory /var/www/daloradius/>
+Options None
+Order allow,deny
+allow from all
+</Directory>" > /etc/apache2/sites-available/daloradius.conf
+
+echo "that's all folks"
