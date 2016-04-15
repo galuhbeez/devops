@@ -38,7 +38,10 @@ chmod 644 /var/www/daloradius/library/daloradius.conf.php
 cd /var/www/daloradius/contrib/db
 mysql -u root -ppassword radius < mysql-daloradius.sql
 cp /var/www/daloradius/library/daloradius.conf.php /var/www/daloradius/library/daloradius.conf.php.bak
-cp /vagrant/daloradius.conf.php.new /var/www/daloradius/library/daloradius.conf.php
+cp /home/ubuntu/daloradius.conf.php.new /var/www/daloradius/library/daloradius.conf.php
+
+#for vagrant
+#cp /vagrant/daloradius.conf.php.new /var/www/daloradius/library/daloradius.conf.php
 
 
 echo "Alias /daloradius /var/www/daloradius/
@@ -48,5 +51,10 @@ Options None
 Order allow,deny
 allow from all
 </Directory>" > /etc/apache2/sites-available/daloradius.conf
+
+a2ensite daloradius
+
+service apache2 reload
+
 
 echo "that's all folks"
