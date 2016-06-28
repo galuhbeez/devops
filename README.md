@@ -18,5 +18,5 @@ youruser ALL=(ALL) NOPASSWD: ALL
 
 list_users.sh usage: lists users in 'home' directory on a remote server
 
-setup-nat.sh usage:  Script used to provision an Ubuntu NAT Server
-./setup-nat.sh "<nat_ip>" "<repo_name>"
+ansibleinstall.sh usage:  Script install ansible on server
+
