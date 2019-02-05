@@ -28,10 +28,27 @@ client[:users].find(:email => options[:email]).each do |doc|
       puts "FRANK DUKES NO GO!"      
 end
 
+update_data = {"password_policy.mfa" => false }
+
 #make sure MFA is disabled on test account:
-client[:accounts].update_one({:account => options[:account]}, '$set' => {"password_policy.mfa" => false })
+client[:accounts].update_one({:account => options[:account]}, '$set' => update_data)
   puts options[:account]
 
 end
+
+update_data = {
+	:sso =>
+	{
+		:saml =>
+		{
+			:enabled => true,:idp_id => options[:account]
+		}
+	}
+}
+
+client[:accounts].update_one({:account => options[:account]}, '$set' => update_data)
+
+# client[:users].update_one({:email => "chris.galaviz@tealium.com"}, '$set' => {:primary_account => ARGV[0] })
+
 
 client.close
