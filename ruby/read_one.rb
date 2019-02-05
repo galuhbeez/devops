@@ -2,6 +2,14 @@
 
 require 'mongo'
 
+require 'optparse'
+
+options = {}
+OptionParser.new do |opt|
+  opt.on('--email EMAIL') { |o| options[:email] = o }
+  opt.on('--account ACCOUNT') { |o| options[:account] = o }
+end.parse!
+
 Mongo::Logger.logger.level = ::Logger::FATAL
 
 #create variables from command line arguments
